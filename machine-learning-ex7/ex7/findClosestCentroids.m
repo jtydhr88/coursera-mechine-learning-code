@@ -21,8 +21,24 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+for i = 1 : size(X, 1)
+  x = X(i, :);
 
+  leng = 0;
+  tempI = -1;
 
+  for m = 1 : K
+    k = centroids(m, :);
+    lengOfxk = norm(x - k);
+
+    if leng == 0 || lengOfxk < leng
+      leng = lengOfxk;
+      tempI = m;
+    end
+  end
+
+  idx(i) = tempI;
+end
 
 
 
